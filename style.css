@@ -1,0 +1,2575 @@
+/* ==========================================================================
+   ROMANTIC BIRTHDAY EXPERIENCE — STYLESHEET
+   Deep Velvet Burgundy, Rose Gold, Candlelight Glow & Handcrafted Warmth
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES & ROMANTIC THEME TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Deep & Sophisticated Romantic Palette */
+  --romantic-dark: #12070D;
+  --romantic-velvet: #1C0B15;
+  --romantic-wine: #481223;
+  --romantic-burgundy: #721D34;
+  --romantic-crimson: #A32845;
+  --blush-deep: #C24660;
+  --blush-accent: #E2798F;
+  --blush-soft: #F6CCD5;
+  --blush-powder: #FDEDF0;
+
+  --cream-bg: #FAF5F0;
+  --cream-paper: #FFFDF9;
+  --cream-accent: #F4ECE1;
+  --cream-card: #FFFFFF;
+
+  --gold-warm: #E2B176;
+  --gold-glow: #F3D29F;
+  --gold-deep: #B58348;
+
+  --ink-dark: #200D16;
+  --ink-body: #4A333E;
+  --ink-muted: #7E6470;
+  --ink-light: #AD98A2;
+
+  --washi-rose: rgba(226, 121, 143, 0.65);
+  --washi-gold: rgba(226, 177, 118, 0.6);
+  --washi-burgundy: rgba(114, 29, 52, 0.45);
+  --washi-tape-color: var(--washi-rose);
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  /* Shadows & Organic Depth */
+  --shadow-sm: 0 3px 10px rgba(32, 13, 22, 0.06);
+  --shadow-md: 0 10px 28px rgba(32, 13, 22, 0.09);
+  --shadow-lg: 0 18px 40px rgba(32, 13, 22, 0.14);
+  --shadow-polaroid: 0 12px 32px -4px rgba(32, 13, 22, 0.16), 0 3px 8px rgba(32, 13, 22, 0.08);
+  --shadow-floating: 0 22px 50px rgba(114, 29, 52, 0.22);
+  --shadow-glow: 0 0 25px rgba(194, 70, 96, 0.35);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & GLOBAL STYLES
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--cream-bg);
+  color: var(--ink-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+.responsive-img,
+.fallback-photo,
+.photo-inner img,
+.montage-img,
+.lightbox-img,
+.father-video-player,
+.final-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Canvas Overlays */
+.ambient-canvas,
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ambient-canvas {
+  z-index: 1;
+}
+
+.confetti-canvas {
+  z-index: 999;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Common Layout */
+.section {
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--blush-deep);
+  background: var(--blush-powder);
+  padding: 0.25rem 1.1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+  transform: rotate(-1.5deg);
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(194, 70, 96, 0.12);
+  border: 1px solid rgba(226, 121, 143, 0.25);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 2.65rem);
+  font-weight: 700;
+  color: var(--ink-dark);
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: 1.08rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   3. HANDMADE BUTTONS & DECORATIONS
+   -------------------------------------------------------------------------- */
+.handmade-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, var(--blush-deep), var(--romantic-burgundy));
+  color: #fff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.95rem 2rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgba(114, 29, 52, 0.35);
+  transition: all var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.handmade-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(114, 29, 52, 0.48);
+  background: linear-gradient(135deg, #cc4e69, var(--romantic-crimson));
+}
+
+.handmade-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.handmade-btn.open-btn {
+  font-size: 1.15rem;
+  padding: 1.1rem 2.4rem;
+  background: linear-gradient(135deg, #d34a66, #91213d);
+  box-shadow: 0 0 0 0 rgba(211, 74, 102, 0.7), 0 10px 30px rgba(145, 33, 61, 0.5);
+  animation: pulseSurpriseBtn 2.2s infinite;
+  cursor: pointer;
+}
+
+@keyframes pulseSurpriseBtn {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(211, 74, 102, 0.6), 0 8px 25px rgba(145, 33, 61, 0.4);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 16px rgba(211, 74, 102, 0), 0 14px 35px rgba(145, 33, 61, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(211, 74, 102, 0), 0 8px 25px rgba(145, 33, 61, 0.4);
+  }
+}
+
+.handmade-btn.btn-secondary {
+  background: var(--cream-paper);
+  color: var(--ink-dark);
+  border: 2px solid var(--blush-soft);
+  box-shadow: var(--shadow-sm);
+}
+
+.handmade-btn.btn-secondary:hover {
+  background: var(--blush-powder);
+  border-color: var(--blush-accent);
+  color: var(--blush-deep);
+}
+
+.handmade-btn.btn-sm {
+  font-size: 0.92rem;
+  padding: 0.65rem 1.35rem;
+}
+
+/* Progressive Unlocking Flow */
+.progressive-section.locked {
+  display: none !important;
+  opacity: 0;
+}
+
+.progressive-section.unlocked {
+  display: block !important;
+  animation: progressiveSectionReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes progressiveSectionReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-unlock-wrapper {
+  margin-top: 3.8rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.unlock-next-btn {
+  font-size: 1.12rem;
+  padding: 1.05rem 2.4rem;
+  background: linear-gradient(135deg, var(--blush-deep), var(--romantic-crimson));
+  box-shadow: 0 10px 28px rgba(194, 70, 96, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+}
+
+.unlock-next-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 34px rgba(194, 70, 96, 0.55);
+}
+
+/* Washi Tape Effect */
+.washi-tape {
+  position: absolute;
+  width: 110px;
+  height: 28px;
+  background-color: var(--washi-tape-color);
+  opacity: 0.85;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  z-index: 10;
+  pointer-events: none;
+  backdrop-filter: blur(1px);
+}
+
+.tape-top-center {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+.tape-corner-left {
+  top: -10px;
+  left: -20px;
+  transform: rotate(-35deg);
+}
+
+.tape-corner-right {
+  top: -10px;
+  right: -20px;
+  transform: rotate(35deg);
+}
+
+/* Handwritten Notes & Annotations */
+.handwritten-caption {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink-body);
+  line-height: 1.2;
+}
+
+.handwritten-note {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--blush-deep);
+  font-weight: 600;
+}
+
+.doodle-arrow {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  color: var(--blush-deep);
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. FLOATING AUDIO CONTROL
+   -------------------------------------------------------------------------- */
+.audio-control-wrapper {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+}
+
+.audio-toggle-btn {
+  width: 46px;
+  height: 46px;
+  background: var(--cream-paper);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  border: 1px solid rgba(226, 121, 143, 0.3);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+  position: relative;
+}
+
+.audio-toggle-btn:hover {
+  transform: scale(1.1);
+  background: var(--blush-powder);
+}
+
+.audio-tooltip {
+  position: absolute;
+  right: 54px;
+  background: var(--romantic-dark);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.audio-control-wrapper:hover .audio-tooltip {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. SECTION 1: SECRET ROMANTIC OPENING
+   -------------------------------------------------------------------------- */
+.opening-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--romantic-wine) 0%, var(--romantic-dark) 100%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.opening-screen.hidden {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.opening-content {
+  text-align: center;
+  max-width: 520px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  position: relative;
+  z-index: 5;
+}
+
+.opening-whisper {
+  font-family: var(--font-hand);
+  font-size: 2.1rem;
+  color: var(--blush-soft);
+  margin-bottom: -0.5rem;
+}
+
+.opening-tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 400;
+  color: #FFFDF9;
+  line-height: 1.35;
+}
+
+.romantic-glow-text {
+  color: var(--blush-accent);
+  text-shadow: 0 0 15px rgba(226, 121, 143, 0.6);
+}
+
+.opening-hint {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.55);
+  font-family: var(--font-hand);
+  margin-top: -0.5rem;
+}
+
+/* Handcrafted 3D Gift Box */
+.gift-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+.gift-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform var(--transition-bounce);
+}
+
+.gift-box:hover {
+  transform: translateY(-6px) rotate(1deg);
+}
+
+.gift-lid {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 150px;
+  height: 38px;
+  background: linear-gradient(135deg, #d34a66, var(--romantic-burgundy));
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  z-index: 3;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: top left;
+}
+
+.gift-lid-band {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 100%;
+  background: var(--gold-warm);
+}
+
+.gift-ribbon-center {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: var(--gold-warm);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+}
+
+.gift-ribbon-loop {
+  position: absolute;
+  top: -24px;
+  width: 32px;
+  height: 24px;
+  border: 4px solid var(--gold-warm);
+  border-radius: 50% 50% 10% 50%;
+}
+
+.gift-ribbon-loop.left {
+  left: calc(50% - 28px);
+  transform: rotate(-30deg);
+}
+
+.gift-ribbon-loop.right {
+  right: calc(50% - 28px);
+  transform: rotate(30deg) scaleX(-1);
+}
+
+.gift-body {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 130px;
+  height: 110px;
+  background: linear-gradient(135deg, var(--romantic-burgundy), var(--romantic-wine));
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+
+.gift-ribbon-vertical {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 100%;
+  background: var(--gold-warm);
+}
+
+.gift-ribbon-horizontal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 24px;
+  background: var(--gold-warm);
+}
+
+.gift-burst-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #fff 0%, #ff8fab 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.gift-wrapper.opened .gift-lid {
+  transform: translateY(-60px) rotate(-25deg);
+}
+
+.gift-wrapper.opened .gift-burst-glow {
+  opacity: 1;
+  animation: glowPulse 1.2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   6. SECTION 2: ROMANTIC BIRTHDAY WELCOME
+   -------------------------------------------------------------------------- */
+.main-content.hidden {
+  display: none;
+}
+
+.welcome-section {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4.5rem 0 3.5rem;
+  background: radial-gradient(circle at 50% 20%, rgba(246, 204, 213, 0.4) 0%, transparent 65%);
+}
+
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--blush-deep);
+  background: #fff;
+  border: 1px solid var(--blush-soft);
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.welcome-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--ink-dark);
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+
+.highlight-name {
+  color: var(--blush-deep);
+  position: relative;
+  display: inline-block;
+}
+
+.heart-pulse {
+  display: inline-block;
+  animation: heartBeat 1.8s infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.2); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+.subtitle-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2.8rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-body);
+}
+
+.handwritten-underline {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 18px;
+}
+
+/* Hero Love Highlight Tags */
+.hero-love-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.2rem;
+}
+
+.hero-tag-pill {
+  background: var(--cream-paper);
+  border: 1px solid rgba(226, 121, 143, 0.35);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--romantic-burgundy);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 8px rgba(32, 13, 22, 0.05);
+  transition: transform var(--transition-fast);
+}
+
+.hero-tag-pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--blush-accent);
+}
+
+.tag-emoji {
+  font-size: 1rem;
+}
+
+/* Hero Showcase Grid: Photo + Love Note Card */
+.hero-showcase-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 840px;
+  margin: 0.5rem auto 2.5rem;
+  text-align: left;
+}
+
+.hero-photo-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+.polaroid-frame {
+  background: var(--cream-paper);
+  padding: 16px 16px 24px;
+  box-shadow: var(--shadow-polaroid);
+  border-radius: 4px;
+  transition: transform var(--transition-bounce), box-shadow var(--transition-bounce);
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.hero-polaroid {
+  width: 320px;
+  max-width: 88vw;
+  transform: rotate(-2deg);
+}
+
+.hero-polaroid:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: var(--shadow-floating);
+}
+
+.photo-inner {
+  width: 100%;
+  aspect-ratio: 9/20;
+  min-height: 460px;
+  max-height: 580px;
+  background: var(--cream-accent);
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+}
+
+.photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #180911;
+  transition: transform 0.6s ease;
+  display: block;
+}
+
+.hero-polaroid:hover .photo-inner img {
+  transform: scale(1.03);
+}
+
+.polaroid-caption {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.hero-note {
+  position: absolute;
+  bottom: -20px;
+  right: -95px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transform: rotate(6deg);
+  width: 150px;
+  text-align: left;
+}
+
+/* Hero Note Card */
+.hero-note-card {
+  background: var(--cream-paper);
+  padding: 2.2rem 2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(226, 177, 118, 0.35);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.hero-note-header {
+  display: flex;
+  align-items: center;
+}
+
+.hero-note-badge {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--blush-deep);
+  background: var(--blush-powder);
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px dashed var(--blush-accent);
+}
+
+.hero-note-text {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--ink-dark);
+  font-style: italic;
+}
+
+.hero-sparkle-quote {
+  border-left: 3px solid var(--gold-warm);
+  padding-left: 1rem;
+}
+
+.hero-sparkle-quote .handwritten-note {
+  font-size: 1.15rem;
+  color: var(--romantic-burgundy);
+}
+
+/* Interactive Hero Love Shower Button & Stat */
+.hero-love-sender {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(226, 121, 143, 0.25);
+}
+
+.hero-heart-btn {
+  font-size: 0.98rem;
+  padding: 0.75rem 1.6rem;
+  background: linear-gradient(135deg, var(--blush-deep), var(--romantic-burgundy));
+  cursor: pointer;
+  animation: none;
+}
+
+.hero-heart-btn:hover {
+  transform: scale(1.05);
+}
+
+.hero-heart-btn:active {
+  transform: scale(0.95);
+}
+
+.hero-heart-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--blush-deep);
+}
+
+.heart-pulse-icon {
+  font-size: 1.3rem;
+  animation: heartBeat 1.5s infinite;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECTION 3: OUR LOVE MEMORIES (POLAROID SCRAPBOOK)
+   -------------------------------------------------------------------------- */
+.memories-section {
+  background-color: var(--cream-bg);
+}
+
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem 1.8rem;
+  padding: 1rem 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.memory-polaroid {
+  background: var(--cream-paper);
+  padding: 14px 14px 20px;
+  box-shadow: var(--shadow-polaroid);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-bounce), box-shadow var(--transition-bounce), z-index 0.1s;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.memory-polaroid:nth-child(1) { transform: rotate(-3deg); }
+.memory-polaroid:nth-child(2) { transform: rotate(2.5deg); }
+.memory-polaroid:nth-child(3) { transform: rotate(-1.8deg); }
+.memory-polaroid:nth-child(4) { transform: rotate(3.2deg); }
+.memory-polaroid:nth-child(5) { transform: rotate(-2.2deg); }
+.memory-polaroid:nth-child(6) { transform: rotate(1.5deg); }
+.memory-polaroid:nth-child(7) { transform: rotate(-3.5deg); }
+.memory-polaroid:nth-child(8) { transform: rotate(2deg); }
+
+.memory-polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: var(--shadow-floating);
+  z-index: 20;
+}
+
+.memory-polaroid .photo-inner {
+  aspect-ratio: 9/16;
+  min-height: 440px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--cream-accent);
+}
+
+.memory-polaroid .photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.memory-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: rgba(32, 13, 22, 0.75);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(2px);
+  z-index: 2;
+}
+
+.memory-polaroid-caption {
+  margin-top: 12px;
+  text-align: center;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.memory-polaroid-caption .handwritten-caption {
+  font-size: 1.18rem;
+  line-height: 1.2;
+}
+
+.memory-sticky-comment {
+  font-family: var(--font-hand);
+  font-size: 0.95rem;
+  color: var(--blush-deep);
+  margin-top: 2px;
+}
+
+.scrapbook-footer-note {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 7, 13, 0.82);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-content {
+  position: relative;
+  z-index: 5;
+  max-width: 440px;
+  width: 90%;
+}
+
+.lightbox-polaroid {
+  background: var(--cream-paper);
+  padding: 16px 16px 22px;
+  border-radius: 4px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  position: relative;
+  text-align: center;
+}
+
+.lightbox-img {
+  width: 100%;
+  aspect-ratio: 9/16;
+  max-height: 72vh;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 2px;
+  background: #180911;
+  display: block;
+}
+
+.lightbox-info {
+  margin-top: 1.25rem;
+}
+
+.lightbox-number {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--blush-deep);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lightbox-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: var(--ink-dark);
+  margin: 0.25rem 0;
+}
+
+.lightbox-caption {
+  font-size: 0.95rem;
+  color: var(--ink-body);
+}
+
+.lightbox-annotation {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--blush-deep);
+  margin-top: 0.5rem;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.lightbox-close-btn:hover {
+  background: rgba(255,255,255,0.45);
+}
+
+/* --------------------------------------------------------------------------
+   8. SECTION 4: OUR LOVE STORY TIMELINE
+   -------------------------------------------------------------------------- */
+.timeline-section {
+  background: #FAF3EC;
+  position: relative;
+}
+
+.handcrafted-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.handcrafted-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--blush-accent),
+    var(--blush-accent) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3.5rem;
+  width: 50%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 2.5rem;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 2.5rem;
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 18px;
+  width: 18px;
+  height: 18px;
+  background: var(--cream-paper);
+  border: 3px solid var(--blush-deep);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(194, 70, 96, 0.2);
+  z-index: 3;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+  right: -9px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -9px;
+}
+
+.timeline-card {
+  background: var(--cream-paper);
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(226, 121, 143, 0.15);
+  position: relative;
+  transition: transform var(--transition-bounce), box-shadow var(--transition-bounce);
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.timeline-phase {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--blush-deep);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink-dark);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-desc {
+  font-size: 0.96rem;
+  color: var(--ink-body);
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   9. SECTION 5: REASONS WHY I LOVE YOU
+   -------------------------------------------------------------------------- */
+.traits-section {
+  background-color: var(--cream-bg);
+}
+
+.traits-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.trait-card {
+  padding: 1.6rem;
+  border-radius: 8px;
+  position: relative;
+  transition: transform var(--transition-bounce), box-shadow var(--transition-bounce);
+  cursor: pointer;
+  min-height: 185px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.trait-card:hover {
+  transform: scale(1.04) rotate(0deg) !important;
+  z-index: 10;
+  box-shadow: var(--shadow-lg);
+}
+
+.trait-card.sticky-yellow {
+  background: #FFF9C4;
+  box-shadow: 2px 5px 15px rgba(32, 13, 22, 0.08);
+  transform: rotate(-2deg);
+}
+
+.trait-card.blush-tag {
+  background: var(--blush-powder);
+  box-shadow: 2px 5px 15px rgba(32, 13, 22, 0.08);
+  transform: rotate(2.5deg);
+  border-left: 4px solid var(--blush-accent);
+}
+
+.trait-card.lavender-tag {
+  background: #EFE8F5;
+  box-shadow: 2px 5px 15px rgba(32, 13, 22, 0.08);
+  transform: rotate(-1.5deg);
+}
+
+.trait-card.peach-kraft {
+  background: #FDE8DE;
+  box-shadow: 2px 5px 15px rgba(32, 13, 22, 0.08);
+  transform: rotate(1.8deg);
+}
+
+.trait-card.lined-paper {
+  background: #fff;
+  border-left: 3px solid var(--blush-deep);
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-2.5deg);
+}
+
+.trait-card.sage-tag {
+  background: #EAF4EE;
+  box-shadow: 2px 5px 15px rgba(32, 13, 22, 0.08);
+  transform: rotate(2deg);
+}
+
+.trait-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.trait-label {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink-dark);
+}
+
+.trait-icon {
+  font-size: 1.4rem;
+}
+
+.trait-quote {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink-dark);
+  line-height: 1.35;
+}
+
+.trait-hidden-note {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--blush-deep);
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   10. SECTION 6: FATHER'S BIRTHDAY WISH & BLESSINGS (NEW!)
+   -------------------------------------------------------------------------- */
+.father-wish-section {
+  background: linear-gradient(180deg, #FBF4EC 0%, #F5EAE0 100%);
+  position: relative;
+}
+
+.father-wish-wrapper {
+  background: var(--cream-paper);
+  border-radius: var(--radius-lg);
+  padding: 2.8rem 2.2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(226, 177, 118, 0.35);
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.father-wish-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.father-photo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.father-polaroid {
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 14px 22px;
+  transform: rotate(-1.5deg);
+  border: 2px solid rgba(226, 177, 118, 0.4);
+}
+
+.father-polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.father-polaroid .photo-inner {
+  width: 100%;
+  aspect-ratio: 3/4;
+  min-height: 380px;
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+}
+
+.father-polaroid .photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.father-blessing-pill {
+  margin-top: 1.2rem;
+  background: var(--blush-powder);
+  color: var(--blush-deep);
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  border: 1px dashed var(--blush-accent);
+}
+
+.father-message-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* Father Video Player Card (PORTRAIT) */
+.father-video-card {
+  background: var(--cream-bg);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  border: 1px solid rgba(226, 121, 143, 0.2);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.father-video-header {
+  margin-bottom: 0.9rem;
+  width: 100%;
+  text-align: center;
+}
+
+.video-badge-tag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--romantic-burgundy);
+  background: var(--blush-soft);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.father-video-player-wrap {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 9/16;
+  min-height: 480px;
+  max-height: 580px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  margin: 0 auto;
+}
+
+.father-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+  display: block;
+}
+
+.father-video-fallback-msg {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.video-icon-symbol {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.video-hint-text {
+  font-size: 0.95rem;
+  color: var(--blush-soft);
+}
+
+.video-hint-text code {
+  background: rgba(255,255,255,0.15);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Father Letter Card */
+.father-letter-card {
+  background: #FFFDF9;
+  border-left: 4px solid var(--gold-warm);
+  padding: 1.8rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.father-letter-quote-mark {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  color: rgba(226, 177, 118, 0.2);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.father-letter-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink-dark);
+  margin-bottom: 0.75rem;
+}
+
+.father-letter-text {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-body);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.father-letter-sign {
+  text-align: right;
+}
+
+.father-letter-sign .handwritten-signature {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--romantic-burgundy);
+}
+
+/* --------------------------------------------------------------------------
+   11. SECTION 7: COUPLE LOVE CONNECTION QUIZ
+   -------------------------------------------------------------------------- */
+.quiz-section {
+  background: #F8F1EB;
+}
+
+.quiz-card-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.quiz-container {
+  background: var(--cream-paper);
+  padding: 2.5rem 2.2rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(226, 121, 143, 0.2);
+  position: relative;
+}
+
+.quiz-progress-bar {
+  margin-bottom: 1.8rem;
+}
+
+.quiz-step-count {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blush-deep);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quiz-progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--cream-accent);
+  border-radius: var(--radius-full);
+  margin-top: 0.4rem;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  width: 20%;
+  background: linear-gradient(90deg, var(--blush-deep), var(--romantic-crimson));
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.quiz-question-text {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink-dark);
+  margin-bottom: 1.6rem;
+  line-height: 1.35;
+}
+
+.quiz-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.quiz-option-btn {
+  background: var(--cream-bg);
+  border: 1.5px solid rgba(226, 121, 143, 0.25);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-dark);
+  text-align: left;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.quiz-option-btn:hover {
+  background: var(--blush-powder);
+  border-color: var(--blush-accent);
+  transform: translateX(4px);
+}
+
+.quiz-option-btn.selected-correct {
+  background: #E8F5E9;
+  border-color: #66BB6A;
+  color: #2E7D32;
+  font-weight: 600;
+}
+
+.quiz-option-btn.selected-wrong {
+  background: #FFEBEE;
+  border-color: #EF5350;
+  color: #C62828;
+}
+
+.quiz-feedback {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  background: var(--blush-powder);
+  border: 1px solid var(--blush-soft);
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.feedback-reaction-icon {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.feedback-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--romantic-burgundy);
+  margin-bottom: 0.8rem;
+}
+
+.quiz-result-box {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.result-badge-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.result-status-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--romantic-burgundy);
+  margin-bottom: 0.75rem;
+}
+
+.result-summary {
+  font-size: 1.08rem;
+  color: var(--ink-body);
+  max-width: 440px;
+  margin: 0 auto 1.25rem;
+}
+
+.result-handwritten-note {
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--blush-deep);
+  margin-bottom: 1.8rem;
+}
+
+.quiz-result-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   12. SECTION 8: THE SEALED LOVE LETTER
+   -------------------------------------------------------------------------- */
+.letter-section {
+  background-color: var(--cream-bg);
+}
+
+.envelope-scene {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.envelope-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.envelope {
+  width: 320px;
+  height: 210px;
+  background: linear-gradient(135deg, #FAF1E8, #F3E4D6);
+  border-radius: 6px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  border: 1px solid rgba(226, 177, 118, 0.4);
+  cursor: pointer;
+  transition: transform var(--transition-bounce);
+}
+
+.envelope:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 110px solid #EEDBCE;
+  z-index: 4;
+  transform-origin: top;
+  transition: transform 0.5s ease;
+}
+
+.wax-seal {
+  position: absolute;
+  top: -110px;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle, var(--blush-deep), var(--romantic-burgundy));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(114, 29, 52, 0.4);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.seal-heart {
+  font-size: 1.3rem;
+}
+
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 160px solid #F5E8DC;
+  border-right: 160px solid #F5E8DC;
+  border-bottom: 110px solid #EDD9CA;
+  border-radius: 0 0 6px 6px;
+  z-index: 3;
+}
+
+.letter-paper-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(18, 7, 13, 0.85);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.letter-paper-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.letter-paper {
+  background: #FFFDF8;
+  max-width: 620px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 3rem 2.5rem;
+  border-radius: 4px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  position: relative;
+  border: 1px solid rgba(226, 177, 118, 0.3);
+  transform: translateY(30px) scale(0.96);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter-paper-modal.active .letter-paper {
+  transform: translateY(0) scale(1);
+}
+
+.letter-stamp {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--blush-deep);
+  border: 1.5px dashed var(--blush-accent);
+  padding: 0.3rem 0.6rem;
+  border-radius: 2px;
+  transform: rotate(3deg);
+}
+
+.letter-close-btn {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  background: var(--cream-accent);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-dark);
+  transition: background var(--transition-fast);
+}
+
+.letter-close-btn:hover {
+  background: var(--blush-soft);
+  color: var(--blush-deep);
+}
+
+.letter-salutation {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--romantic-burgundy);
+  margin-bottom: 1.5rem;
+}
+
+.letter-body p {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--ink-dark);
+  margin-bottom: 1.25rem;
+}
+
+.letter-emphasis {
+  font-size: 1.55rem !important;
+  font-weight: 700;
+  color: var(--blush-deep) !important;
+  text-align: center;
+  margin: 1.8rem 0 !important;
+}
+
+.letter-signoff {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.signoff-closing {
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  color: var(--ink-muted);
+  display: block;
+}
+
+.handwritten-signature {
+  font-family: var(--font-hand);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--romantic-burgundy);
+}
+
+.letter-bottom-note {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed var(--cream-accent);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   13. SECTION 9: ROMANTIC BIRTHDAY CAKE
+   -------------------------------------------------------------------------- */
+.cake-section {
+  background: #FAF4EE;
+}
+
+.cake-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cake-instruction-banner {
+  background: var(--cream-paper);
+  padding: 0.5rem 1.3rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--blush-soft);
+}
+
+.candle-count-badge {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--blush-deep);
+}
+
+.cake-assembly {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.candles-row {
+  display: flex;
+  gap: 2.2rem;
+  align-items: flex-end;
+  margin-bottom: -6px;
+  z-index: 5;
+}
+
+.candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.flame {
+  width: 16px;
+  height: 28px;
+  background: radial-gradient(ellipse at bottom, #fff 0%, #ffd166 45%, #ff5e7e 85%, transparent 100%);
+  border-radius: 50% 50% 20% 20%;
+  animation: flameFlicker 0.8s infinite alternate ease-in-out;
+  box-shadow: 0 0 16px #ff8fab;
+  position: relative;
+}
+
+@keyframes flameFlicker {
+  0% { transform: scale(1) rotate(-1deg); }
+  50% { transform: scale(1.1, 0.95) rotate(2deg); }
+  100% { transform: scale(0.95, 1.05) rotate(-2deg); }
+}
+
+.candle.blown .flame {
+  display: none;
+}
+
+.smoke {
+  width: 8px;
+  height: 20px;
+  background: rgba(180, 180, 180, 0.6);
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  opacity: 0;
+}
+
+.candle.blown .smoke {
+  animation: smokeRise 1.2s forwards ease-out;
+}
+
+@keyframes smokeRise {
+  0% { opacity: 0.8; transform: translateY(0) scale(0.8); }
+  100% { opacity: 0; transform: translateY(-35px) scale(2); filter: blur(3px); }
+}
+
+.wick {
+  width: 2px;
+  height: 8px;
+  background: #333;
+}
+
+.candle-stick {
+  width: 14px;
+  height: 48px;
+  border-radius: 3px 3px 0 0;
+}
+
+.candle-tall .candle-stick {
+  height: 60px;
+}
+
+.stripe-pink { background: repeating-linear-gradient(45deg, #F8BBD0, #F8BBD0 6px, #FFF 6px, #FFF 12px); }
+.stripe-lavender { background: repeating-linear-gradient(45deg, #E1BEE7, #E1BEE7 6px, #FFF 6px, #FFF 12px); }
+.stripe-peach { background: repeating-linear-gradient(45deg, #FFE0B2, #FFE0B2 6px, #FFF 6px, #FFF 12px); }
+
+/* Cake Structure */
+.cake-structure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.cake-tier-top {
+  width: 160px;
+  height: 65px;
+  background: linear-gradient(180deg, #FFF0F3 0%, #FAD2E1 100%);
+  border-radius: 12px 12px 0 0;
+  box-shadow: inset 0 4px 8px rgba(255,255,255,0.8), 0 4px 10px rgba(0,0,0,0.06);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.berries-decoration {
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+}
+
+.cake-tier-bottom {
+  width: 220px;
+  height: 85px;
+  background: linear-gradient(180deg, #FAD2E1 0%, #F4A7BB 100%);
+  border-radius: 8px 8px 0 0;
+  box-shadow: inset 0 4px 8px rgba(255,255,255,0.6), 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.cake-stand {
+  width: 260px;
+  height: 14px;
+  background: var(--gold-warm);
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.wish-revealed-wrap {
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+  margin-top: 1rem;
+}
+
+.wish-sparkle-stars {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.wish-sent-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  color: var(--romantic-burgundy);
+  margin-bottom: 0.5rem;
+}
+
+.wish-sent-text {
+  font-size: 1.15rem;
+  color: var(--ink-body);
+  margin-bottom: 1.8rem;
+}
+
+/* --------------------------------------------------------------------------
+   14. SECTION 10: ROMANTIC MEMORY MONTAGE
+   -------------------------------------------------------------------------- */
+.surprise-section {
+  background-color: var(--cream-bg);
+}
+
+.surprise-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.final-gift-box {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, var(--romantic-burgundy), var(--romantic-wine));
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-bounce);
+  border: 2px solid var(--gold-warm);
+}
+
+.final-gift-box:hover {
+  transform: scale(1.06) rotate(-2deg);
+}
+
+.final-ribbon-bow {
+  font-size: 3rem;
+}
+
+.surprise-label {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cinematic-montage-container {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.montage-frame {
+  background: var(--cream-paper);
+  padding: 16px 16px 22px;
+  border-radius: 6px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.montage-slideshow {
+  width: 100%;
+  aspect-ratio: 9/16;
+  min-height: 520px;
+  max-height: 640px;
+  background: var(--romantic-dark);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slideshow-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.slideshow-slide.active {
+  opacity: 1;
+}
+
+.montage-img {
+  width: 100%;
+  height: calc(100% - 62px);
+  flex: 1 1 auto;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.slide-caption {
+  height: 62px;
+  min-height: 62px;
+  background: #FFFDF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(226, 121, 143, 0.15);
+  text-align: center;
+}
+
+.slide-caption .handwritten-caption {
+  font-size: 1.15rem;
+  color: var(--romantic-burgundy);
+  line-height: 1.25;
+}
+
+.final-video-player {
+  width: 100%;
+  aspect-ratio: 9/16;
+  min-height: 480px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 4px;
+  display: block;
+}
+
+.slideshow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+  padding: 0 0.5rem;
+}
+
+.slide-nav-btn {
+  width: 38px;
+  height: 38px;
+  background: var(--cream-accent);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-dark);
+  transition: background var(--transition-fast);
+}
+
+.slide-nav-btn:hover {
+  background: var(--blush-soft);
+  color: var(--blush-deep);
+}
+
+.slide-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cream-accent);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: var(--blush-deep);
+  transform: scale(1.3);
+}
+
+/* --------------------------------------------------------------------------
+   15. SECTION 11: FOREVER & ALWAYS ENDING SCREEN
+   -------------------------------------------------------------------------- */
+.ending-section {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, var(--romantic-wine) 0%, var(--romantic-dark) 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 1.5rem;
+  position: relative;
+}
+
+.ending-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  max-width: 620px;
+}
+
+.ending-photo-frame {
+  position: relative;
+  display: inline-block;
+}
+
+.final-polaroid {
+  width: 560px;
+  max-width: 90vw;
+  padding: 16px 16px 20px;
+  transform: rotate(2deg);
+}
+
+.final-polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.final-polaroid .photo-inner {
+  width: 100%;
+  aspect-ratio: 16/9;
+  min-height: auto;
+  max-height: none;
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+  background: var(--cream-accent);
+}
+
+.final-polaroid .photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ending-quotes {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+  color: var(--blush-soft);
+  line-height: 1.6;
+}
+
+.ending-hbd-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  color: #FFFDF9;
+}
+
+.ending-author {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  color: var(--gold-warm);
+}
+
+.ending-signoff-pill {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+  padding: 0.5rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-size: 1rem;
+  color: var(--blush-soft);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.ending-subtle-stars {
+  font-size: 1.5rem;
+  color: var(--gold-warm);
+  display: flex;
+  gap: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   16. RESPONSIVE BREAKPOINTS (Mobile & Tablet)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .father-wish-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .father-photo-col {
+    order: 1;
+  }
+
+  .father-polaroid {
+    max-width: 320px;
+  }
+  
+  .father-message-col {
+    order: 2;
+  }
+
+  .montage-slideshow {
+    aspect-ratio: 9/16;
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .hero-polaroid {
+    width: 280px;
+  }
+
+  .hero-polaroid .photo-inner {
+    min-height: 400px;
+  }
+
+  .hero-note {
+    right: -30px;
+    bottom: -35px;
+  }
+
+  .final-polaroid {
+    width: 460px;
+  }
+
+  .final-polaroid .photo-inner {
+    min-height: auto;
+  }
+
+  .father-video-player-wrap {
+    min-height: 420px;
+    max-width: 300px;
+  }
+
+  .polaroid-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .memory-polaroid .photo-inner {
+    min-height: 380px;
+  }
+
+  /* Timeline stacked layout on mobile */
+  .handcrafted-timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100% !important;
+    left: 0 !important;
+    padding-left: 50px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 11px;
+    right: auto;
+  }
+
+  .letter-paper {
+    padding: 2.2rem 1.6rem;
+  }
+
+  .letter-salutation {
+    font-size: 1.7rem;
+  }
+
+  .letter-body p {
+    font-size: 1.02rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-polaroid {
+    width: 260px;
+  }
+
+  .hero-polaroid .photo-inner {
+    min-height: 370px;
+  }
+
+  .polaroid-grid {
+    grid-template-columns: 1fr;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .memory-polaroid .photo-inner {
+    min-height: 380px;
+  }
+
+  .final-polaroid {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .final-polaroid .photo-inner {
+    min-height: auto;
+  }
+
+  .father-polaroid {
+    max-width: 280px;
+  }
+
+  .father-polaroid .photo-inner {
+    min-height: 340px;
+  }
+
+  .father-video-player-wrap {
+    min-height: 380px;
+    max-width: 270px;
+  }
+
+  .montage-slideshow {
+    aspect-ratio: 9/16;
+    min-height: 380px;
+  }
+
+  .traits-board {
+    grid-template-columns: 1fr;
+  }
+
+  .father-wish-wrapper {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .quiz-container {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .envelope {
+    width: 270px;
+    height: 180px;
+  }
+
+  .envelope-flap {
+    border-left-width: 135px;
+    border-right-width: 135px;
+    border-top-width: 95px;
+  }
+
+  .envelope-pocket {
+    border-left-width: 135px;
+    border-right-width: 135px;
+    border-bottom-width: 95px;
+  }
+
+  .wax-seal {
+    top: -95px;
+  }
+
+  .cake-assembly {
+    transform: scale(0.88);
+  }
+}
+
+@media (max-width: 360px) {
+  .welcome-title {
+    font-size: 1.85rem;
+  }
+
+  .hero-polaroid {
+    width: 220px;
+  }
+
+  .hero-polaroid .photo-inner {
+    min-height: 320px;
+  }
+
+  .memory-polaroid .photo-inner {
+    min-height: 320px;
+  }
+
+  .father-video-player-wrap {
+    min-height: 320px;
+  }
+
+  .montage-slideshow {
+    min-height: 320px;
+  }
+
+  .cake-assembly {
+    transform: scale(0.78);
+  }
+
+  .handmade-btn {
+    font-size: 0.95rem;
+    padding: 0.85rem 1.5rem;
+  }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

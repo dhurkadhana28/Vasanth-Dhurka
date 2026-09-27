@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Happiest Birthday, My Love ❤️ — Ponnus</title>
+  <meta name="description" content="A handcrafted romantic birthday love experience made with all my heart.">
+
+  <!-- Google Fonts: Playfair Display, Plus Jakarta Sans, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-locked">
+
+  <!-- Ambient Starfield & Floating Hearts Canvas -->
+  <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+  <!-- Floating Audio Player Control -->
+  <div class="audio-control-wrapper" id="audio-control-wrapper" title="Toggle romantic music">
+    <button id="audio-toggle-btn" class="audio-toggle-btn" aria-label="Toggle romantic background music">
+      <span class="audio-icon audio-icon-muted">🔇</span>
+      <span class="audio-icon audio-icon-playing" style="display:none;">💖</span>
+      <span class="audio-tooltip">Music: Off</span>
+    </button>
+    <audio id="birthday-audio" preload="none" loop>
+      <source src="assets/audio/birthday-song.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- ==========================================
+       SECTION 1: SECRET ROMANTIC OPENING
+       ========================================== -->
+  <section id="opening-screen" class="opening-screen active">
+    <div class="opening-content">
+      <div class="opening-header">
+        <p class="opening-whisper animate-fade-in">To the love of my life...</p>
+        <h1 class="opening-tagline animate-fade-in-delayed">Today belongs completely to you, <span class="romantic-glow-text">Ponnus ❤️</span></h1>
+      </div>
+
+      <!-- Handcrafted 3D Romantic Gift Box -->
+      <div class="gift-wrapper" id="opening-gift-wrapper">
+        <div class="gift-sparkles-ambient"></div>
+        <div class="gift-box" id="opening-gift-box" role="button" tabindex="0" aria-label="Open your birthday surprise">
+          <div class="gift-lid" id="gift-lid">
+            <div class="gift-ribbon-loop left"></div>
+            <div class="gift-ribbon-loop right"></div>
+            <div class="gift-ribbon-center"></div>
+            <div class="gift-lid-band"></div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-ribbon-horizontal"></div>
+            <div class="gift-burst-glow" id="gift-burst-glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="open-gift-btn" class="handmade-btn open-btn">
+        <span class="btn-icon">🎁</span>
+        <span class="btn-text">Open Your Birthday Surprise</span>
+      </button>
+
+      <p class="opening-hint">👉 Tap the gift box or button to begin our story</p>
+    </div>
+  </section>
+
+  <!-- MAIN EXPERIENCE CONTAINER (Revealed after opening gift) -->
+  <main id="main-content" class="main-content hidden">
+
+    <!-- ==========================================
+         SECTION 2: ROMANTIC BIRTHDAY WELCOME
+         ========================================== -->
+    <section id="welcome-section" class="section welcome-section">
+      <div class="paper-texture-overlay"></div>
+      <div class="container welcome-container">
+        
+        <div class="welcome-badge">
+          <span class="doodle-sparkle">🌹</span> Happiest Birthday to My Forever Person
+        </div>
+
+        <h1 class="welcome-title">
+          Happiest Birthday, <span class="highlight-name" id="conf-herName">Ponnus ❤️</span> <span class="heart-pulse">💖</span>
+        </h1>
+
+        <div class="subtitle-wrap">
+          <p class="welcome-subtitle">I built this little universe filled with my love for you...</p>
+          <svg class="handwritten-underline" viewBox="0 0 300 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 5 12 Q 80 4, 150 13 T 295 8" stroke="var(--blush-deep)" stroke-width="3.5" stroke-linecap="round" fill="transparent"/>
+          </svg>
+        </div>
+
+        <!-- Romantic Mini Highlight Tags -->
+        <div class="hero-love-tags">
+          <span class="hero-tag-pill"><span class="tag-emoji">👑</span> Queen of My Heart</span>
+          <span class="hero-tag-pill"><span class="tag-emoji">💫</span> My Prettiest Sight</span>
+          <span class="hero-tag-pill"><span class="tag-emoji">🔒</span> Forever &amp; Always Yours</span>
+        </div>
+
+        <!-- Hero Photo Showcase Grid -->
+        <div class="hero-showcase-grid">
+          
+          <!-- Physical resting photo with romantic washi tape -->
+          <div class="hero-photo-wrapper">
+            <div class="washi-tape tape-top-center"></div>
+            <div class="polaroid-frame hero-polaroid">
+              <div class="photo-inner">
+                <img src="assets/images/hero.jpg" alt="Photo of my love" class="responsive-img fallback-photo" data-fallback-label="Replace with hero.jpg">
+              </div>
+              <div class="polaroid-caption">
+                <span class="handwritten-caption" id="conf-heroCaption">The most gorgeous girl in my world ✨</span>
+              </div>
+            </div>
+            <div class="handwritten-annotation hero-note">
+              <span class="doodle-arrow">↳</span>
+              <span class="note-text" id="conf-heroNote">forever the prettiest sight :)</span>
+            </div>
+          </div>
+
+          <!-- Sweet Whispered Love Note Card -->
+          <div class="hero-note-card">
+            <div class="washi-tape tape-corner-left"></div>
+            <div class="hero-note-header">
+              <span class="hero-note-badge">💌 A Little Note for Today</span>
+            </div>
+            <p class="hero-note-text">
+              "Every single sunrise with you is a blessing, and every second loving you is pure magic. Today is all about celebrating the most breathtaking person in my entire universe — You, <span class="conf-herName">Ponnus ❤️</span>"
+            </p>
+            
+            <div class="hero-sparkle-quote">
+              <span class="handwritten-note">"You make my entire world softer and infinitely brighter."</span>
+            </div>
+
+            <!-- Interactive Send Love Heart Shower -->
+            <div class="hero-love-sender">
+              <button id="hero-heart-btn" class="handmade-btn hero-heart-btn" aria-label="Send love hearts to Ponnus">
+                <span class="btn-icon">💖</span>
+                <span>Shower Her With Love</span>
+              </button>
+              <div class="hero-heart-stat" id="hero-heart-stat">
+                <span class="heart-pulse-icon">🥰</span>
+                <span id="hero-heart-count"><strong>100</strong> Love Hearts Showered!</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="section-unlock-wrapper">
+          <button class="handmade-btn unlock-next-btn" data-unlock="memories-section">
+            <span class="btn-text">Step Into Our Love Memories 📸</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: OUR LOVE MEMORIES (POLAROID SCRAPBOOK)
+         ========================================== -->
+    <section id="memories-section" class="section memories-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Treasured Moments</span>
+          <h2 class="section-title">Memories Written In My Heart</h2>
+          <p class="section-subtitle">"Every second spent with you is my favorite memory to hold onto."</p>
+        </div>
+
+        <div class="scrapbook-canvas" id="scrapbook-canvas">
+          <!-- Dynamically populated polaroids -->
+          <div class="polaroid-grid" id="polaroid-grid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <div class="scrapbook-footer-note">
+          <span class="handwritten-note">✦ Tap any polaroid to see it up close & read what I was thinking!</span>
+        </div>
+
+        <div class="section-unlock-wrapper">
+          <button class="handmade-btn unlock-next-btn" data-unlock="timeline-section">
+            <span class="btn-text">Walk Our Love Story Journey ⏳</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: OUR LOVE STORY TIMELINE
+         ========================================== -->
+    <section id="timeline-section" class="section timeline-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Our Romantic Journey</span>
+          <h2 class="section-title">How You Stole My Heart</h2>
+          <p class="section-subtitle">"From the moment our paths crossed to the promise of forever."</p>
+        </div>
+
+        <div class="handcrafted-timeline" id="timeline-container">
+          <!-- Timeline items rendered dynamically -->
+        </div>
+
+        <div class="section-unlock-wrapper">
+          <button class="handmade-btn unlock-next-btn" data-unlock="traits-section">
+            <span class="btn-text">Why I Am Endlessly In Love With You 🌹</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: REASONS WHY I LOVE YOU
+         ========================================== -->
+    <section id="traits-section" class="section traits-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Endlessly Adored</span>
+          <h2 class="section-title">A Few of the Million Reasons I Love You</h2>
+          <p class="section-subtitle">"Because nobody in the whole world could ever compare to you, Dhurka."</p>
+        </div>
+
+        <div class="traits-board" id="traits-board">
+          <!-- Eclectic Cards: Romantic sticky notes, love tags, kraft labels -->
+        </div>
+
+        <div class="section-unlock-wrapper">
+          <button class="handmade-btn unlock-next-btn" data-unlock="father-wish-section">
+            <span class="btn-text">Appa's Heartfelt Birthday Wish 👨‍👧</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6: FATHER'S BIRTHDAY WISH & BLESSINGS
+         ========================================== -->
+    <section id="father-wish-section" class="section father-wish-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Pillar of Love & Blessings</span>
+          <h2 class="section-title">Appa's Heartfelt Birthday Wish 👨‍👧💖</h2>
+          <p class="section-subtitle">"A father's boundless love, eternal pride, and warmest blessings for his precious daughter."</p>
+        </div>
+
+        <div class="father-wish-wrapper">
+          <div class="washi-tape tape-top-center"></div>
+          
+          <div class="father-wish-grid">
+            
+            <!-- Father & Daughter Photo Showcase -->
+            <div class="father-photo-col">
+              <div class="polaroid-frame father-polaroid">
+                <div class="photo-inner">
+                  <img src="assets/images/father-wish.jpg" alt="Appa and Daughter" class="responsive-img fallback-photo" data-fallback-label="Replace with father-wish.jpg">
+                </div>
+                <div class="polaroid-caption">
+                  <span class="handwritten-caption">Appa's Priceless Gem 💎</span>
+                </div>
+              </div>
+              <div class="father-blessing-pill">
+                <span>🌸 Always his little princess 🌸</span>
+              </div>
+            </div>
+
+            <!-- Father Video & Touching Message Card -->
+            <div class="father-message-col">
+              
+              <!-- Video Player Container -->
+              <div class="father-video-card">
+                <div class="father-video-header">
+                  <span class="video-badge-tag">🎬 Video Message From Appa</span>
+                </div>
+                
+                <div class="father-video-player-wrap">
+                  <video id="father-video" class="father-video-player" playsinline controls preload="metadata">
+                    <source src="assets/videos/father-wish.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <div class="father-video-fallback-msg" id="father-video-fallback" style="display: none;">
+                    <div class="video-icon-symbol">🎥</div>
+                    <p class="video-hint-text">Add <code>assets/videos/father-wish.mp4</code> to play Appa's video wish here!</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Father's Blessings Letter Card -->
+              <div class="father-letter-card">
+                <div class="father-letter-quote-mark">“</div>
+                <h4 class="father-letter-title">A Father's Unconditional Love</h4>
+                <p class="father-letter-text" id="conf-fatherWishText">
+                  My dearest daughter, from the day you were born to this very moment, you have filled our lives with endless light, laughter, and pride. May God bless you with good health, immense peace, boundless success, and every joy your heart desires. Always keep smiling, stay confident, and know that Appa is always praying for your happiness. Happy Birthday, my darling child.
+                </p>
+                <div class="father-letter-sign">
+                  <span class="handwritten-signature">— With all of Appa's Love &amp; Blessings ❤️</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="section-unlock-wrapper">
+          <button class="handmade-btn unlock-next-btn" data-unlock="quiz-section">
+            <span class="btn-text">Test Our Love Connection 💘</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 7: COUPLE LOVE CONNECTION QUIZ
+         ========================================== -->
+    <section id="quiz-section" class="section quiz-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Love Examination</span>
+          <h2 class="section-title">How Well Do You Know My Heart? 💖</h2>
+          <p class="section-subtitle">"Let's test how deeply connected our souls are."</p>
+        </div>
+
+        <div class="quiz-card-wrapper">
+          <div class="washi-tape tape-corner-left"></div>
+          <div class="washi-tape tape-corner-right"></div>
+          
+          <div class="quiz-container" id="quiz-container">
+            <!-- Question Screen -->
+            <div id="quiz-question-box" class="quiz-box">
+              <div class="quiz-progress-bar">
+                <span class="quiz-step-count" id="quiz-step-count">Question 1 of 5</span>
+                <div class="quiz-progress-track">
+                  <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+                </div>
+              </div>
+
+              <h3 class="quiz-question-text" id="quiz-question-text">Loading question...</h3>
+
+              <div class="quiz-options-grid" id="quiz-options-grid">
+                <!-- 4 Choices Rendered Here -->
+              </div>
+
+              <!-- Playful romantic feedback toast -->
+              <div class="quiz-feedback" id="quiz-feedback" style="display: none;">
+                <div class="feedback-reaction-icon" id="feedback-icon">🥰</div>
+                <div class="feedback-text" id="feedback-text">You know my heart inside out!</div>
+                <button class="handmade-btn btn-sm" id="quiz-next-btn">Next Question →</button>
+              </div>
+            </div>
+
+            <!-- Quiz Result Screen -->
+            <div id="quiz-result-box" class="quiz-result-box" style="display: none;">
+              <div class="result-badge-icon">💍</div>
+              <h3 class="result-status-title">Soulmates Forever &amp; Always 💖✨</h3>
+              <p class="result-summary" id="quiz-result-summary">You scored 5/5! Our hearts are beat-for-beat perfectly in sync.</p>
+              <div class="result-handwritten-note">"I love you more than words could ever explain!"</div>
+              <div class="quiz-result-actions">
+                <button class="handmade-btn btn-secondary" id="quiz-restart-btn">Play Again 🔄</button>
+                <button class="handmade-btn btn-primary unlock-next-btn" data-unlock="letter-section">Open My Heartfelt Love Letter 💌 →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 8: THE SEALED LOVE LETTER
+         ========================================== -->
+    <section id="letter-section" class="section letter-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">From My Soul To Yours</span>
+          <h2 class="section-title">A Love Letter Just For You</h2>
+          <p class="section-subtitle">Take a slow breath, break the wax seal, and read what my heart holds for you.</p>
+        </div>
+
+        <div class="envelope-scene" id="envelope-scene">
+          
+          <!-- Closed Envelope UI -->
+          <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope" id="envelope">
+              <div class="envelope-back"></div>
+              <div class="envelope-paper-preview"></div>
+              <div class="envelope-pocket"></div>
+              <div class="envelope-flap" id="envelope-flap">
+                <div class="wax-seal" id="wax-seal">
+                  <span class="seal-heart">💌</span>
+                </div>
+              </div>
+            </div>
+            <button class="handmade-btn letter-open-btn" id="open-letter-btn">
+              <span class="btn-icon">💌</span>
+              <span>Open My Love Letter</span>
+            </button>
+          </div>
+
+          <!-- Unfolded Full Letter Paper Modal -->
+          <div class="letter-paper-modal" id="letter-paper-modal">
+            <div class="letter-paper">
+              <div class="washi-tape tape-top-center"></div>
+              <div class="letter-stamp">ETERNAL LOVE 🌹 FOREVER YOURS</div>
+              <button class="letter-close-btn" id="close-letter-btn" aria-label="Close letter">✕</button>
+              
+              <div class="letter-content" id="letter-content">
+                <!-- Rendered dynamically from configuration -->
+                <p class="letter-salutation">My Dearest <span class="conf-herName">Dhurka ❤️</span>,</p>
+                <div class="letter-body" id="letter-body-text">
+                  <p>From the moment you walked into my life, everything became infinitely softer, brighter, and full of meaning.</p>
+                  <p>Loving you, Dhurka, has been the easiest, most natural, and most beautiful choice my heart has ever made.</p>
+                  <p>Thank you for your warmth when days are hard.<br>
+                  Thank you for your intoxicating laughter that heals everything.<br>
+                  Thank you for simply being the most incredible person I know.</p>
+                  <p>And on this special day...</p>
+                  <p class="letter-emphasis">Happy Birthday, My Whole World.</p>
+                  <p>I promise to love you, cherish you, and hold your hand through every single tomorrow.</p>
+                </div>
+                <div class="letter-signoff">
+                  <span class="signoff-closing">Forever and unconditionally yours,</span>
+                  <span class="handwritten-signature" id="conf-yourName">— Vasanth S 💖</span>
+                </div>
+              </div>
+
+              <div class="letter-bottom-note">
+                <span class="handwritten-note">"Every word written from the deepest corner of my heart."</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="section-unlock-wrapper">
+          <button class="handmade-btn unlock-next-btn" data-unlock="cake-section">
+            <span class="btn-text">Make a Birthday Wish With Me 🎂</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 9: ROMANTIC BIRTHDAY CAKE & WISH
+         ========================================== -->
+    <section id="cake-section" class="section cake-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Sweet Celebration</span>
+          <h2 class="section-title">Make a Wish With Me, Ponnus 🎂✨</h2>
+          <p class="section-subtitle">"Close your eyes, make the deepest wish in your heart, and tap each candle to blow it out!"</p>
+        </div>
+
+        <div class="cake-stage" id="cake-stage">
+          <div class="cake-instruction-banner" id="cake-instruction">
+            <span class="candle-count-badge" id="candle-count-badge">Tap candles to blow them out</span>
+          </div>
+
+          <!-- Handcrafted Romantic Birthday Cake -->
+          <div class="cake-assembly">
+            
+            <!-- Candles Array -->
+            <div class="candles-row" id="candles-row">
+              <div class="candle" data-candle-id="1" role="button" tabindex="0" aria-label="Blow out candle 1">
+                <div class="flame" id="flame-1">
+                  <div class="flame-core"></div>
+                  <div class="flame-glow"></div>
+                </div>
+                <div class="smoke" id="smoke-1"></div>
+                <div class="wick"></div>
+                <div class="candle-stick stripe-pink"></div>
+              </div>
+
+              <div class="candle candle-tall" data-candle-id="2" role="button" tabindex="0" aria-label="Blow out candle 2">
+                <div class="flame" id="flame-2">
+                  <div class="flame-core"></div>
+                  <div class="flame-glow"></div>
+                </div>
+                <div class="smoke" id="smoke-2"></div>
+                <div class="wick"></div>
+                <div class="candle-stick stripe-lavender"></div>
+              </div>
+
+              <div class="candle" data-candle-id="3" role="button" tabindex="0" aria-label="Blow out candle 3">
+                <div class="flame" id="flame-3">
+                  <div class="flame-core"></div>
+                  <div class="flame-glow"></div>
+                </div>
+                <div class="smoke" id="smoke-3"></div>
+                <div class="wick"></div>
+                <div class="candle-stick stripe-peach"></div>
+              </div>
+            </div>
+
+            <!-- Cake Layers -->
+            <div class="cake-structure">
+              <div class="cake-frosting-drips">
+                <span class="drip drip-1"></span>
+                <span class="drip drip-2"></span>
+                <span class="drip drip-3"></span>
+                <span class="drip drip-4"></span>
+                <span class="drip drip-5"></span>
+              </div>
+              <div class="cake-tier cake-tier-top">
+                <div class="frosting-layer"></div>
+                <div class="berries-decoration">🍓 🌹 🍓</div>
+              </div>
+              <div class="cake-tier cake-tier-bottom">
+                <div class="frosting-swirls"></div>
+                <div class="cake-sponge"></div>
+              </div>
+              <div class="cake-stand"></div>
+            </div>
+
+          </div>
+
+          <!-- Wish Sent Reveal Overlay -->
+          <div class="wish-revealed-wrap" id="wish-revealed-wrap" style="display: none;">
+            <div class="wish-sparkle-stars">✨ 💖 🌟 💖 ✨</div>
+            <h3 class="wish-sent-title">✨ WISH SENT TO THE HEAVENS ✨</h3>
+            <p class="wish-sent-text">May every dream in your heart come true, my love.</p>
+            <button class="handmade-btn btn-primary unlock-next-btn" id="to-surprise-btn" data-unlock="surprise-section">
+              <span>One More Romantic Surprise 🎁 →</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 10: ROMANTIC MEMORY MONTAGE
+         ========================================== -->
+    <section id="surprise-section" class="section surprise-section progressive-section locked">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Cinematic Love</span>
+          <h2 class="section-title">A Glimpse of Our Beautiful Journey 🎬</h2>
+          <p class="section-subtitle">Every photograph holds a heartbeat of our story together.</p>
+        </div>
+
+        <div class="surprise-box-wrapper" id="surprise-box-wrapper">
+          <div class="final-gift-box" id="final-gift-box">
+            <div class="final-gift-lid">
+              <div class="final-ribbon-bow">🎀</div>
+            </div>
+            <div class="final-gift-body">
+              <span class="surprise-label">Our Story Reel</span>
+            </div>
+          </div>
+          <button class="handmade-btn surprise-open-btn" id="open-surprise-btn">
+            <span class="btn-icon">🎁</span>
+            <span>Unveil The Montage</span>
+          </button>
+        </div>
+
+        <!-- Cinematic Montage Container -->
+        <div class="cinematic-montage-container" id="cinematic-montage-container" style="display: none;">
+          <div class="montage-frame">
+            <div class="washi-tape tape-top-center"></div>
+            
+            <!-- Video Player (If user has final-memory.mp4) -->
+            <video id="final-video" class="final-video-player" playsinline controls preload="none" style="display:none;">
+              <source src="assets/videos/final-memory.mp4" type="video/mp4">
+            </video>
+
+            <!-- Photo Slideshow Fallback -->
+            <div class="montage-slideshow" id="montage-slideshow">
+              <div class="slideshow-slide active" data-index="0">
+                <img src="assets/images/final-01.jpg" alt="Romantic Memory 1" class="montage-img fallback-photo" data-fallback-label="Replace with final-01.jpg">
+                <div class="slide-caption"><span class="handwritten-caption" id="slide-caption-0">To the way you make my entire day brighter...</span></div>
+              </div>
+              <div class="slideshow-slide" data-index="1">
+                <img src="assets/images/final-02.jpg" alt="Romantic Memory 2" class="montage-img fallback-photo" data-fallback-label="Replace with final-02.jpg">
+                <div class="slide-caption"><span class="handwritten-caption" id="slide-caption-1">To every quiet moment where time stood still...</span></div>
+              </div>
+              <div class="slideshow-slide" data-index="2">
+                <img src="assets/images/final-03.jpg" alt="Romantic Memory 3" class="montage-img fallback-photo" data-fallback-label="Replace with final-03.jpg">
+                <div class="slide-caption"><span class="handwritten-caption" id="slide-caption-2">To the late night talks where our souls connected...</span></div>
+              </div>
+              <div class="slideshow-slide" data-index="3">
+                <img src="assets/images/final-04.jpg" alt="Romantic Memory 4" class="montage-img fallback-photo" data-fallback-label="Replace with final-04.jpg">
+                <div class="slide-caption"><span class="handwritten-caption" id="slide-caption-3">To your breathtaking smile that never fails to melt me...</span></div>
+              </div>
+              <div class="slideshow-slide" data-index="4">
+                <img src="assets/images/final-05.jpg" alt="Romantic Memory 5" class="montage-img fallback-photo" data-fallback-label="Replace with final-05.jpg">
+                <div class="slide-caption"><span class="handwritten-caption" id="slide-caption-4">Here's to a lifetime of loving you more every single day.</span></div>
+              </div>
+            </div>
+
+            <!-- Slideshow Controls -->
+            <div class="slideshow-controls" id="slideshow-controls">
+              <button class="slide-nav-btn prev" id="slide-prev-btn" aria-label="Previous photo">‹</button>
+              <div class="slide-dots" id="slide-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <button class="slide-nav-btn next" id="slide-next-btn" aria-label="Next photo">›</button>
+            </div>
+          </div>
+          
+          <div class="section-unlock-wrapper">
+            <button class="handmade-btn unlock-next-btn" data-unlock="ending-section">
+              <span class="btn-text">Forever &amp; Always ❤️</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 11: FOREVER & ALWAYS ENDING SCREEN
+         ========================================== -->
+    <section id="ending-section" class="ending-section progressive-section locked">
+      <div class="night-sky-particles"></div>
+      
+      <div class="container ending-container">
+        
+        <div class="ending-photo-frame">
+          <div class="washi-tape tape-top-center"></div>
+          <div class="polaroid-frame final-polaroid">
+            <div class="photo-inner">
+              <img src="assets/images/final-photo.jpg" alt="Final romantic portrait" class="responsive-img fallback-photo" data-fallback-label="Replace with final-photo.jpg">
+            </div>
+            <div class="polaroid-caption">
+              <span class="handwritten-caption">My forever &amp; always favorite person 💖</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ending-quotes">
+          <p class="ending-quote-line-1">"In every lifetime, in every universe..."</p>
+          <p class="ending-quote-line-2">"My heart will always search for and choose you, Dhurka."</p>
+        </div>
+
+        <div class="ending-wishes">
+          <h2 class="ending-hbd-title">Happy Birthday, My Beloved <span class="conf-herName">Ponnus ❤️</span> 🎂🌹</h2>
+          <p class="ending-author">Forever yours, <span id="conf-yourNameEnd">Vasanth S</span> 💖</p>
+        </div>
+
+        <div class="ending-signoff-pill">
+          <span class="heart-icon">💖</span> You are my today and all of my tomorrows.
+        </div>
+
+        <div class="ending-subtle-stars">
+          <span>✦</span>
+          <span>⋆</span>
+          <span>💖</span>
+          <span>⋆</span>
+          <span>✦</span>
+        </div>
+
+        <div class="section-unlock-wrapper" style="margin-top: 1.5rem;">
+          <button class="handmade-btn btn-secondary" id="replay-journey-btn">
+            <span>Relive Our Love Story ↺</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Photo Lightbox Modal for Memories -->
+  <div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close photo view">✕</button>
+      <div class="lightbox-polaroid">
+        <div class="washi-tape tape-top-center"></div>
+        <img src="" alt="Enlarged memory" id="lightbox-img" class="lightbox-img">
+        <div class="lightbox-info">
+          <span class="lightbox-number" id="lightbox-number">Moment #01</span>
+          <h4 class="lightbox-title" id="lightbox-title">Title</h4>
+          <p class="lightbox-caption" id="lightbox-caption">Caption</p>
+          <p class="lightbox-annotation" id="lightbox-annotation">Note</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
