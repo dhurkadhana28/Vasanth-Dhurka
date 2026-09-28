@@ -2376,15 +2376,56 @@ a {
 
   .hero-polaroid {
     width: 280px;
+    margin: 0 auto;
   }
 
   .hero-polaroid .photo-inner {
     min-height: 400px;
   }
 
+  .hero-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 100%;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .hero-photo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .hero-note {
-    right: -30px;
-    bottom: -35px;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    width: auto;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .hero-note-card {
+    padding: 1.6rem 1.4rem;
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .hero-love-tags {
+    gap: 0.5rem;
+  }
+
+  .hero-tag-pill {
+    font-size: 0.82rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .hero-love-sender {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
   }
 
   .final-polaroid {
@@ -2446,12 +2487,38 @@ a {
     font-size: 2.2rem;
   }
 
+  .welcome-section {
+    padding: 3rem 0 2.5rem;
+    min-height: auto;
+  }
+
   .hero-polaroid {
-    width: 260px;
+    width: 240px;
   }
 
   .hero-polaroid .photo-inner {
-    min-height: 370px;
+    min-height: 340px;
+  }
+
+  .hero-note-card {
+    padding: 1.3rem 1.1rem;
+  }
+
+  .hero-note-text {
+    font-size: 0.98rem;
+  }
+
+  .hero-note-badge {
+    font-size: 1.05rem;
+  }
+
+  .hero-sparkle-quote .handwritten-note {
+    font-size: 1rem;
+  }
+
+  .hero-heart-btn {
+    font-size: 0.88rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .polaroid-grid {
@@ -2535,11 +2602,20 @@ a {
   }
 
   .hero-polaroid {
-    width: 220px;
+    width: 200px;
   }
 
   .hero-polaroid .photo-inner {
-    min-height: 320px;
+    min-height: 280px;
+  }
+
+  .hero-tag-pill {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .hero-note-card {
+    padding: 1rem 0.9rem;
   }
 
   .memory-polaroid .photo-inner {

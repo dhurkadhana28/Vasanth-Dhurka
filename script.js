@@ -481,7 +481,7 @@ let startRomanticSynth = null;
 let stopRomanticSynth = null;
 
 function initAudioController() {
-  const audio = document.getElementById('audio');
+  const audio = document.getElementById('birthday-audio');
   const toggleBtn = document.getElementById('audio-toggle-btn');
   const mutedIcon = toggleBtn ? toggleBtn.querySelector('.audio-icon-muted') : null;
   const playingIcon = toggleBtn ? toggleBtn.querySelector('.audio-icon-playing') : null;
